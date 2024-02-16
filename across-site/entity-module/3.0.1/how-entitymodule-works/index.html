@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How EntityModule works :: Across</title>
+    <meta name="generator" content="Antora 1.0.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../../..">Across</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Product A</a>
+            <a class="navbar-item" href="#">Product B</a>
+            <a class="navbar-item" href="#">Product C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Service A</a>
+            <a class="navbar-item" href="#">Service B</a>
+            <a class="navbar-item" href="#">Service C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Resources</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Resource A</a>
+            <a class="navbar-item" href="#">Resource B</a>
+            <a class="navbar-item" href="#">Resource C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="entity-module" data-version="3.0.1">
+  <aside class="navigation" role="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Module: Entity Management</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">Creating a form</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Module: Entity Management</span>
+    <span class="version">3.0.1</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Across</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../across/3.0.0/index.html">3.0.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Application Guides</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../guides/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Migration guides</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../migration/dev/index.html">dev</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Admin Web</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../admin-web-module/3.0.1/index.html">3.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Bootstrap UI</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../bootstrap-ui-module/2.0.1/index.html">2.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Documents & Forms</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../dynamic-forms-module/0.0.1/index.html">0.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Module: Entity Management</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">3.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: LDAP Support</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ldap-module/1.0.1/index.html">1.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Security - ACLs</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../spring-security-acl-module/3.0.1/index.html">3.0.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Module: Web CMS</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../web-cms-module/0.0.4/index.html">0.0.4</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main" role="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../../across/3.0.0/index.html" class="home-link"></a>
+<nav class="crumbs" role="navigation" aria-label="breadcrumbs">
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/ForeachOS/ax-docs-entity-module/edit/develop/docs/modules/ROOT/pages/how-entitymodule-works/index.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>How EntityModule works</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>&lt;div class="sect1"&gt;
+&lt;h2 id="entity-views"&gt;&lt;a class="anchor" href="#entity-views"&gt;&lt;/a&gt;Entity views&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;EntityModule has the ability to generate automatic views for entities.
+When AdminWebModule is present, automatic CRUD pages for entities will be generated using these views.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A view is an abstraction of web controller that allows you to take advantage of the EntityModule configuration system.
+Usually views are a rendering of one or more entities of a particular entity type.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Both &lt;code&gt;EntityConfiguration&lt;/code&gt; and &lt;code&gt;EntityAssociation&lt;/code&gt; can have their own views defined.
+They do so by implementing the &lt;code&gt;EntityViewRegistry&lt;/code&gt; interface.
+Every view has a unique name within an &lt;code&gt;EntityViewRegistry&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="default-views"&gt;&lt;a class="anchor" href="#default-views"&gt;&lt;/a&gt;Default views&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By default CRUD views will be created for every &lt;code&gt;EntityConfiguration&lt;/code&gt; with a &lt;code&gt;CrudRepository&lt;/code&gt; or an &lt;code&gt;EntityQueryExecutor&lt;/code&gt; registered.
+Likewise CRUD views will be created for every &lt;code&gt;EntityAssociation&lt;/code&gt; with an &lt;code&gt;AssociatedEntityQueryExecutor&lt;/code&gt; attribute.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Query executor attributes should be registered automatically in most cases.
+So you usually don&#8217;t need to worry about those.
+See the &lt;a href="#entity-query-executor"&gt;chapter on &lt;code&gt;EntityQueryExecutor&lt;/code&gt;&lt;/a&gt; for more information.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The following default views will be created for an entity type:&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class="tableblock frame-all grid-all spread"&gt;
+&lt;colgroup&gt;
+&lt;col style="width: 20%;"&gt;
+&lt;col style="width: 20%;"&gt;
+&lt;col style="width: 60%;"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;View name&lt;/th&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;View type&lt;/th&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;listView
+(&lt;code&gt;EntityView.LIST_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;list view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Shows the list of entities.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;createView
+(&lt;code&gt;EntityView.CREATE_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;form view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Renders and executes the form for creating a new entity.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;updateView
+(&lt;code&gt;EntityView.UPDATE_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;form view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Renders and executes the form for updating an entity.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;deleteView
+(&lt;code&gt;EntityView.DELETE_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;form view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Shows the confirmation page and performs the delete if allowed.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The default views all render markup using the &lt;code&gt;ViewElement&lt;/code&gt; infrastructure and the implementations provided by the BootstrapUiModule.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_how_entity_views_work"&gt;&lt;a class="anchor" href="#_how_entity_views_work"&gt;&lt;/a&gt;How entity views work&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;An &lt;code&gt;EntityView&lt;/code&gt; is created by an &lt;code&gt;EntityViewFactory&lt;/code&gt; based on an &lt;code&gt;EntityViewRequest&lt;/code&gt;.
+A controller is still responsible for executing (usually rendering) the actual &lt;code&gt;EntityView&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;GenericEntityViewController&lt;/code&gt; is responsible for loading and rendering all default views in the AdminWebModule UI.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The path of the web request to &lt;code&gt;GenericEntityViewController&lt;/code&gt; will determine:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the name of the view that should be rendered&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;which &lt;code&gt;EntityViewRegistry&lt;/code&gt; will be used for loading the view (&lt;code&gt;EntityConfiguration&lt;/code&gt; or &lt;code&gt;EntityAssociation&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+You can force the view being rendered by simply providing the view name as a request parameter with key &lt;strong&gt;view&lt;/strong&gt;.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The controller creates an &lt;code&gt;EntityViewRequest&lt;/code&gt;, retrieves the &lt;code&gt;EntityViewFactory&lt;/code&gt; and builds the corresponding &lt;code&gt;EntityViewContext&lt;/code&gt; and &lt;code&gt;EntityViewCommand&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_entityviewrequest"&gt;&lt;a class="anchor" href="#_entityviewrequest"&gt;&lt;/a&gt;EntityViewRequest&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Wraps together all the information of a specific entity view request:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the web request that is creating the view&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the contextual information of the entity being viewed (represented by the &lt;code&gt;EntityViewContext&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the command that should be executed on the &lt;code&gt;EntityViewFactory&lt;/code&gt; (represented by the &lt;code&gt;EntityViewCommand&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the name of the view being requested and the &lt;code&gt;EntityViewFactory&lt;/code&gt; being used&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;the &lt;code&gt;PageContentStructure&lt;/code&gt; of the page being rendered (if applicable)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please refer to the &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/request/EntityViewRequest.html"&gt;&lt;code&gt;EntityViewRequest&lt;/code&gt; javadoc&lt;/a&gt; for a description of all available properties.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_entityviewcontext"&gt;&lt;a class="anchor" href="#_entityviewcontext"&gt;&lt;/a&gt;EntityViewContext&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;EntityViewContext&lt;/code&gt; contains contextual information and provides access to components that should be used for building a view.
+Contextual information is for example the entity type, specific entity or entity association being viewed.
+Components are things like the &lt;code&gt;EntityLinkBuilder&lt;/code&gt;, &lt;code&gt;EntityMessages&lt;/code&gt; or &lt;code&gt;AllowableActions&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please refer to the &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/context/EntityViewContext.html"&gt;&lt;code&gt;EntityViewContext&lt;/code&gt; javadoc&lt;/a&gt; for a description of all available properties.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+&lt;code&gt;EntityViewContext&lt;/code&gt; is available as a request-scoped bean but only in case of a request passing through the &lt;code&gt;GenericEntityViewController&lt;/code&gt; will the data be loaded.
+Loading the &lt;code&gt;EntityViewContext&lt;/code&gt; attributes manually  can be done by using the &lt;code&gt;EntityViewContextLoader&lt;/code&gt; bean.
+You should use the &lt;code&gt;ConfigurableEntityViewContext&lt;/code&gt; interface to modify a view context.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_entityviewcommand"&gt;&lt;a class="anchor" href="#_entityviewcommand"&gt;&lt;/a&gt;EntityViewCommand&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;EntityViewCommand&lt;/code&gt; represents the command that should be executed on the &lt;code&gt;EntityViewFactory&lt;/code&gt; to create the corresponding &lt;code&gt;EntityView&lt;/code&gt;.
+Most often the command represents the form of a view where the request parameters are bound to.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;An &lt;code&gt;EntityViewCommand&lt;/code&gt; has 2 attributes: the (optional) entity DTO being bound and a map of named extensions.
+Customizing view processing can be done by registering additional extensions that will be rendered and validated upon binding.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;EntityViewCommand&lt;/code&gt; will be validated for every state modifying request: web requests using POST, PUT, PATCH or DELETE.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please refer to the &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/request/EntityViewCommand.html"&gt;&lt;code&gt;EntityViewCommand&lt;/code&gt; javadoc&lt;/a&gt; for a description of all available properties.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_entityviewfactory"&gt;&lt;a class="anchor" href="#_entityviewfactory"&gt;&lt;/a&gt;EntityViewFactory&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Every view is built by an &lt;code&gt;EntityViewFactory&lt;/code&gt;.
+An &lt;code&gt;EntityViewRegistry&lt;/code&gt; (like &lt;code&gt;EntityConfiguration&lt;/code&gt; or &lt;code&gt;EntiyAssociation&lt;/code&gt;) is nothing but a map of &lt;code&gt;EntityViewFactory&lt;/code&gt; by view name.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;An &lt;code&gt;EntityViewFactory&lt;/code&gt; is a stateless controller with 4 controller methods that are expected to be called in a specific order.
+Please refer to the &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/EntityViewFactory.html"&gt;javadoc&lt;/a&gt; for an overview of the different controller methods and their purpose.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect4"&gt;
+&lt;h5 id="_dispatchingentityviewfactory_and_entityviewprocessor"&gt;&lt;a class="anchor" href="#_dispatchingentityviewfactory_and_entityviewprocessor"&gt;&lt;/a&gt;DispatchingEntityViewFactory and EntityViewProcessor&lt;/h5&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;EntityModule has only a single implementation of &lt;code&gt;EntityViewFactory&lt;/code&gt; in the form of the &lt;code&gt;DefaultEntityViewFactory&lt;/code&gt;.
+The &lt;code&gt;DefaultEntityViewFactory&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;supports &lt;code&gt;ViewElement&lt;/code&gt; based rendering model - heavily used by EntityModule for building the HTML markup&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;dispatches its controller methods in a more fine-grained manner to a list of registered and ordered &lt;code&gt;EntityViewProcessor&lt;/code&gt; instances.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The default builders when &lt;a href="#configuring-views"&gt;configuring views&lt;/a&gt; only register &lt;code&gt;EntityViewProcessor&lt;/code&gt; beans on the factory.
+When an &lt;code&gt;EntityViewFactory&lt;/code&gt; controller method is being called, it will be translated into one or more processor methods and those method calls will be dispatched to all processors in order.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Several adapter &lt;code&gt;EntityViewProcessor&lt;/code&gt; classes are available:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;use &lt;code&gt;EntityViewProcessorAdapter&lt;/code&gt; for most use cases, it provides several adapter methods that also allow you to hook into the &lt;code&gt;ViewElement&lt;/code&gt; generation lifecycle&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;use &lt;code&gt;SimpleEntityViewProcessorAdapter&lt;/code&gt; if you do not need to hook into the &lt;code&gt;ViewElement&lt;/code&gt; generation lifecycle&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;use &lt;code&gt;ExtensionViewProcessorAdapter&lt;/code&gt; if you want to create a custom view/form that represents a so-called extension object&lt;/p&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;the view is part of the entity configuration but often does not manage properties of the actual entity type&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;i class="fa icon-note" title="Note"&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+The &lt;code&gt;DefaultEntityViewFactory&lt;/code&gt; will not execute any of the rendering related methods if any of the previous methods has marked the &lt;code&gt;EntityView&lt;/code&gt; as being a redirect.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please refer to the &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/EntityViewProcessor.html"&gt;EntityViewProcessor&lt;/a&gt;, &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/processors/EntityViewProcessorAdapter.html"&gt;EntityViewProcessorAdapter&lt;/a&gt; and &lt;a href="{entity-module-javadoc}/com/foreach/across/modules/entity/views/processors/SimpleEntityViewProcessorAdapter.html"&gt;SimpleEntityViewProcessorAdapter&lt;/a&gt; for more details on the available processor methods.
+The appendix also provides a &lt;a href="#appendix-view-processors"&gt;list of all available general purpose processors&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect4"&gt;
+&lt;h5 id="transaction-support"&gt;&lt;a class="anchor" href="#transaction-support"&gt;&lt;/a&gt;Transaction support&lt;/h5&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;DefaultEntityViewFactory&lt;/code&gt; uses a &lt;code&gt;TransactionalEntityViewProcessorRegistry&lt;/code&gt; and enables transactions on all state modifying HTTP methods: &lt;strong&gt;POST&lt;/strong&gt;, &lt;strong&gt;PUT&lt;/strong&gt;, &lt;strong&gt;PATCH&lt;/strong&gt; or &lt;strong&gt;DELETE&lt;/strong&gt;.
+If a transaction manager bean name is available on the &lt;code&gt;EntityConfiguration&lt;/code&gt;, transactions will be enabled by default for all form views: create, update, delete and custom form views.
+This means that all calls in state modifying &lt;code&gt;doControl()&lt;/code&gt; methods of all &lt;code&gt;EntityViewProcessor&lt;/code&gt; instances will happen in a single transaction.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The transaction manager bean name is registered as an attribute &lt;code&gt;EntityAttributes.TRANSACTION_MANAGER_NAME&lt;/code&gt; and is detected automatically for every Spring Data repository based entity.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;div class="title"&gt;Manually enabling transactions on a view&lt;/div&gt;
+&lt;p&gt;You can enable transactions manually on the &lt;code&gt;EntityViewFactoryBuilder&lt;/code&gt; by specifying either the &lt;code&gt;PlatformTransactionManager&lt;/code&gt; to use, the name of the transaction manager bean or a &lt;code&gt;TransactionTemplate&lt;/code&gt; if you need more fine-grained control.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_model_attributes"&gt;&lt;a class="anchor" href="#_model_attributes"&gt;&lt;/a&gt;Model attributes&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;GenericEntityViewController&lt;/code&gt; exposes the following model attributes to the Spring MVC view:&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class="tableblock frame-all grid-all spread"&gt;
+&lt;colgroup&gt;
+&lt;col style="width: 33.3333%;"&gt;
+&lt;col style="width: 66.6667%;"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;Attribute name&lt;/th&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;strong&gt;entityViewRequest&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;EntityViewRequest&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;strong&gt;entityViewCommand&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;EntityViewCommand&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;strong&gt;entityViewContext&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;&lt;code&gt;EntityViewContext&lt;/code&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="_default_view_types"&gt;&lt;a class="anchor" href="#_default_view_types"&gt;&lt;/a&gt;Default view types&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;EntityModule supports 3 view types by default.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;When defining a new view (see the next section) it will be one of these types.
+The view type determines the base template that will be used to setup the &lt;code&gt;EntityViewFactory&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The following view types are defined:&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class="tableblock frame-all grid-all spread"&gt;
+&lt;colgroup&gt;
+&lt;col style="width: 20%;"&gt;
+&lt;col style="width: 20%;"&gt;
+&lt;col style="width: 60%;"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;View type&lt;/th&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;Template name&lt;/th&gt;
+&lt;th class="tableblock halign-left valign-top"&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;list view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;listView
+(&lt;code&gt;EntityView.LIST_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Base configuration for rendering a list of entities.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;form view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;updateView
+(&lt;code&gt;EntityView.UPDATE_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Base configuration for rendering a form for a single entity.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;generic view&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;genericView
+(&lt;code&gt;EntityView.GENERIC_VIEW_NAME&lt;/code&gt;)&lt;/p&gt;&lt;/td&gt;
+&lt;td class="tableblock halign-left valign-top"&gt;&lt;p class="tableblock"&gt;Barebone configuration for visualizing a single entity.&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The template name can be used to replace the initializer for the &lt;code&gt;EntityViewFactoryBuilder&lt;/code&gt;.
+See the chapter on the &lt;a href="#view-builder-initializer"&gt;EntityViewFactoryBuilderInitializer&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;See also the next chapters for more information on &lt;a href="#list-view"&gt;list view&lt;/a&gt;, &lt;a href="#form-view"&gt;form view&lt;/a&gt; and &lt;a href="#generic-view"&gt;generic view&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect3"&gt;
+&lt;h4 id="configuring-views"&gt;&lt;a class="anchor" href="#configuring-views"&gt;&lt;/a&gt;Configuring views&lt;/h4&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Existing views can be modified or new ones registered using an &lt;code&gt;EntityViewFactoryBuilder&lt;/code&gt; or &lt;code&gt;EntityListViewFactoryBuilder&lt;/code&gt;.
+You usually don&#8217;t create these manually but get a builder for the corresponding view from the configuration or association builder.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The builders provide common properties that will configure one or more &lt;code&gt;EntityViewProcessor&lt;/code&gt; instances on the view factory.
+They also allow you to modify the processor collection directly by adding or removing processors, or by post-processing the entire &lt;code&gt;EntityViewProcessorRegistry&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="title"&gt;Example adding an EntityViewProcessor to the default list view&lt;/div&gt;
+&lt;div class="content"&gt;
+&lt;pre class="highlightjs highlight"&gt;&lt;code class="language-java hljs" data-lang="java"&gt;configuration.withType( MyEntity.class )
+             .listView( lvb -&gt; lvb.viewProcessor( myProcessor ) );&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The following chapters provide some more details on how to configure the default view types.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-view"><a class="anchor" href="#list-view"></a>1. List view</h3>
+<div class="paragraph">
+<p>default settings of a list view:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>user must have read allowable action</p>
+</li>
+<li>
+<p>renders values as LIST_VALUE</p>
+</li>
+<li>
+<p>shows all readable properties</p>
+</li>
+<li>
+<p>adds update/delete buttons for every item if the user as update and delete action respectively</p>
+</li>
+<li>
+<p>supports paging and sorting</p>
+</li>
+<li>
+<p>allows configuring sortable properties and the default sort</p>
+</li>
+<li>
+<p>includes a form at the top that can be used for adding filters</p>
+</li>
+<li>
+<p>a create button for the entity if the user has create action allowed</p>
+</li>
+<li>
+<p>supports global feedback messages set with the <code>EntityViewPageHelper</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>default processors</p>
+</div>
+<div class="sect3">
+<h4 id="_adding_a_list_view"><a class="anchor" href="#_adding_a_list_view"></a>1.1. Adding a list view</h4>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_customizing_a_list_view"><a class="anchor" href="#_customizing_a_list_view"></a>1.2. Customizing a list view</h4>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<div class="title">Custom sorting</div>
+<p>Customizing the sort behaviour of a specific property can be done by setting a <code>Sort.Order.class</code> attribute on the <code>EntityPropertyDescriptor</code>.
+You can use this to sort on a different property instead, or to specify behaviour for null handling and case sensitivity.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="list-view-filter"><a class="anchor" href="#list-view-filter"></a>1.3. Filtering a list view</h4>
+<div class="paragraph">
+<p>By default a list view is not filtered.
+If your entity has an <a href="#entity-query-executor"><code>EntityQueryExecutor</code></a> available you can easily activate a simple yet powerful <a href="#entity-query-language-eql">EQL-based filter</a>.
+Activating <code>EntityQuery</code> based filtering can be done through the builders:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Activate the EQL-based filter on every entity that has an EntityQueryExecutor
+configuration.matching( c -&gt; c.hasAttribute( EntityQueryExecutor.class ) )
+             .listView( lvb -&gt; lvb.entityQueryFilter( true ) );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="#entity-list-view-custom-filter">this chapter</a> for information on how to configure a custom filter for a list view.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="entity-list-view-custom-filter"><a class="anchor" href="#entity-list-view-custom-filter"></a>1.4. Adding a custom filter to a list view</h4>
+<div class="paragraph">
+<p>A filter on a list view usually consists of 2 parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>an <code>EntityViewProcessor</code> that provides the filtering options on the list view</p>
+</li>
+<li>
+<p>an <code>EntityViewProcessor</code> that fetches the items using the filtering options</p>
+<div class="ulist">
+<ul>
+<li>
+<p>a custom form is usually added to the <code>EntityViewCommand.addExtension()</code> for both postback and optional validation</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Both parts can easily be combined in a single <code>EntityViewProcessor</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Custom filter example</strong></p>
+</div>
+<div class="paragraph">
+<p>The following code illustrates adding a simple filter to a view.
+The filter uses a separate repository method to lookup entities by name.
+The filter options are added as a form on top of the list view, the form in this case rendered via a custom Thymeleaf template.</p>
+</div>
+<div class="listingblock">
+<div class="title">Implementation of a single class that holds all filter logic</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">private static class GroupFilteringProcessor extends EntityViewProcessorAdapter
+{
+	@Autowired
+	private GroupRepository groupRepository;
+
+	@Override
+    public void initializeCommandObject( EntityViewRequest entityViewRequest,
+                                         EntityViewCommand command,
+                                         WebDataBinder dataBinder ) {
+        command.addExtension( "filter", "" );
+    }
+
+    @Override
+    protected void doControl( EntityViewRequest entityViewRequest,
+                              EntityView entityView,
+                              EntityViewCommand command,
+                              BindingResult bindingResult,
+                              HttpMethod httpMethod ) {
+        String filter = command.getExtension( "filter", String.class );
+        Pageable pageable = command.getExtension( PageableExtensionViewProcessor.DEFAULT_EXTENSION_NAME, Pageable.class );
+
+        if ( !StringUtils.isBlank( filter ) ) {
+            entityView.addAttribute( "items", groupRepository.findByNameContaining( filter, pageable ) );
+        }
+        else {
+            entityView.addAttribute( "items", groupRepository.findAll( pageable ) );
+        }
+    }
+
+    @Override
+    protected void postRender( EntityViewRequest entityViewRequest,
+                               EntityView entityView,
+                               ContainerViewElement container,
+                               ViewElementBuilderContext builderContext ) {
+        Optional&lt;ContainerViewElement&gt; header = find( container, "entityListForm-header", ContainerViewElement.class );
+        header.ifPresent(
+                h -&gt; {
+                    Optional&lt;NodeViewElement&gt; actions
+                            = find( h, "entityListForm-header-actions", NodeViewElement.class );
+                    actions.ifPresent( a -&gt; a.addCssClass( "pull-right" ) );
+
+                    h.addChild( new TemplateViewElement( "th/entityModuleTest/filters :: filterForm" ) );
+                }
+        );
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Custom Thymeleaf template that builds the form</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;fragments xmlns:th="http://www.w3.org/1999/xhtml"&gt;
+    &lt;div class="list-header form form-inline" th:fragment="filterForm"&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label for="group-name-filter"&gt;Filter by name:&lt;/label&gt;
+            &lt;input id="group-name-filter" name="extensions[filter]" th:value="${entityViewCommand.extensions['filter']}" type="text" class="form-control" /&gt;
+        &lt;/div&gt;
+        &lt;input type="submit" class="btn btn-default" value="Apply filter" /&gt;
+    &lt;/div&gt;
+&lt;/fragments&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Registration of the custom filter on the list view</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">entities.withType( Group.class )
+        .listView( lvb -&gt; lvb
+            .entityQueryFilter( false )           // optional - disable the previously activated entity query filter
+            .filter( groupFilteringProcessor() )  // register the custom filter
+		);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list_summary_view"><a class="anchor" href="#_list_summary_view"></a>1.5. List summary view</h4>
+<div class="paragraph">
+<p>It is possible to activate a detail view inline in a list view.
+If the <code>EntityConfiguration</code> or <code>EntityAssociation</code> has a view named <strong>listSummaryView</strong> a summary pane will automatically become available when clicking on the item row in the table.
+The summary pane is called using AJAX and only the <em>content</em> fragment of the page will be rendered.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// Activate a summary view in the main user results table using a custom Thymeleaf template
+configuration.withType( User.class )
+             .view( EntityView.SUMMARY_VIEW_NAME, vb -&gt; vb.template( "th/myModule/userSummary" ) );</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="form-view"><a class="anchor" href="#form-view"></a>2. Form view</h3>
+<div class="sect3">
+<h4 id="_create_and_update_view"><a class="anchor" href="#_create_and_update_view"></a>2.1. create and update view</h4>
+<div class="paragraph">
+<p>default settings of a form view:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>user must have update allowable action</p>
+</li>
+<li>
+<p>renders values as LIST_VALUE</p>
+</li>
+<li>
+<p>shows all readable properties</p>
+</li>
+<li>
+<p>adds update/delete buttons for every item if the user as update and delete action respectively</p>
+</li>
+<li>
+<p>supports paging and sorting</p>
+</li>
+<li>
+<p>allows configuring sortable properties and the default sort</p>
+</li>
+<li>
+<p>includes a form at the top that can be used for adding filters</p>
+</li>
+<li>
+<p>a create button for the entity if the user has create action allowed</p>
+</li>
+<li>
+<p>supports global feedback messages set with the <code>EntityViewPageHelper</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>default processors</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-view"><a class="anchor" href="#delete-view"></a>3. Delete view</h3>
+<div class="paragraph">
+<p>default settings</p>
+</div>
+<div class="paragraph">
+<p>default processors</p>
+</div>
+<div class="paragraph">
+<p>A delete action will be available for all entities where <code>AllowableAction.DELETE</code> is present, this is the default unless more explicit permissions are configured.
+A delete will always redirect to a confirmation page by default.
+Because the possibility to delete an entity often depends on other factors (usually associations), the default <code>EntityDeleteViewFactory</code> publishes an event that allows customizing said confirmation page.</p>
+</div>
+<div class="paragraph">
+<p>By catching the <code>BuildEntityDeleteViewEvent</code> your code can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>suppress the ability to delete (by hiding the delete button)</p>
+</li>
+<li>
+<p>add associations to the form</p>
+</li>
+<li>
+<p>add custom feedback messages to the form (and optionally remove the associations block)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This should be sufficient for most use cases without having to revert to custom <code>EntityViewProcessor</code> implementations.
+Of course the latter would work as well.</p>
+</div>
+<div class="paragraph">
+<div class="title">Entity associations</div>
+<p>The initial <code>BuildEntityDeleteViewEvent</code> is configured based on the <code>EntityAssociation</code> list of the entity.
+If associated items are detected, they influence the form settings depending on the <strong>parentDeleteMode</strong> property of the <code>EntityAssociation</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ParentDeleteMode.IGNORE</code>: item information is not printed nor influences the ability to delete</p>
+</li>
+<li>
+<p><code>ParentDeleteMode.WARN</code>: item information is printed on the form but does not influence the ability to delete</p>
+</li>
+<li>
+<p><code>ParentDeleteMode.SUPPRESS</code>: item information is printed on the form and disables the ability to delete, this is the default setting</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The event is published after the initial association information has been set.</p>
+</div>
+<div class="paragraph">
+<div class="title">Performing the delete</div>
+<p>The EntityModule simply calls the delete method of the <code>EntityModel</code>, usually a direct call to a repository <code>delete()</code>.
+You will have to take care yourself of complex delete scenarios - like deleting the associations - by either modifying the <code>EntityModel</code> or using another mechanism like the <code>EntityInterceptor</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_creating_an_additional_form_view"><a class="anchor" href="#_creating_an_additional_form_view"></a>3.1. creating an additional form view</h4>
+
+</div>
+<div class="sect3">
+<h4 id="configuring-form-text"><a class="anchor" href="#configuring-form-text"></a>3.2. Configuring form controls text</h4>
+<div class="paragraph">
+<p>A form view usually renders properties in either <code>ViewElementMode.FORM_WRITE</code> or <code>ViewElementMode.FORM_READ</code>, depending on the fact if a property can be edited or not.
+By default, a property like this would be rendered as a form group (<code>FormGroupElement</code> that is usually a combination of the label and the control for the property) or a <a href="#fieldset-properties">fieldset</a> (<code>FieldsetFormElement</code>).</p>
+</div>
+<div class="paragraph">
+<p>In <code>FORM_READ</code> (readonly) mode, the default form renders only the label of a property.
+You can customize the label value by setting the corresponding message code, for example: <code>UserModule.entities.user.properties.username=Name of the user</code>.</p>
+</div>
+<div class="paragraph">
+<p>In <code>FORM_WRITE</code> mode several other message codes will be resolved as well, and if they return values, additional content will be shown on the form.</p>
+</div>
+<div class="paragraph">
+<div class="title">Description text</div>
+<p>A description provides additional context for the property being shown.
+It is rendered above the control of a form group, or above the content of a fieldset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>UserModule.entities.user.properties.username[description]=The username must be unique.</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Help text</div>
+<p>Help text is rendered below the control of a form group, or below the content of a fieldset.
+It usually provides a (less important) hint for updating the value.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>UserModule.entities.user.properties.username[help]=Try to pick something you will remember.</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Tooltip text</div>
+<p>Tooltip text is added as a separate icon (question mark) that will only show the actual tooltip when you hover over it with the mouse cursor.
+Tooltips are often used as an alternative for help text.
+The difference is that help text is always visible, whereas to see the tooltip a used will need to take an extra action.</p>
+</div>
+<div class="paragraph">
+<p>The tooltip icon is added to the label of a form group or to the legend of a fieldset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>UserModule.entities.user.properties.username[tooltip]=You will receive an errror when saving if your username is already taken.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default all message codes allow HTML entities, so you can add additional links or markup to them.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In case of a form group you can also manually set the different text components from code.
+Values set from code will take precedence and will never be replaced by the values resolved from message codes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A more detailed explanation of how message codes are resolved and which codes are possible can be found in <a href="#message-codes">the appendix</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generic-view"><a class="anchor" href="#generic-view"></a>4. custom views</h3>
+<div class="paragraph">
+<p>TODO: register menu item, register access validator
+=== AdminWebModule JQuery plugins
+:chapter-number: 0
+The default EntityModule web resources add some JQuery based javascript plugins.</p>
+</div>
+<div class="sect3">
+<h4 id="_entitymodule_object"><a class="anchor" href="#_entitymodule_object"></a>4.1. EntityModule object</h4>
+<div class="paragraph">
+<p>All EntityModule and BootstrapUiModule javascript can be initialized by calling <code>EntityModule.initializeFormElements()</code>.
+This method optionally takes an argument that is the node in which the form elements should be initialized.</p>
+</div>
+<div class="paragraph">
+<p>This is automatically done on document load, but when using AJAX fragment rendering, you usually want to re-initialize the DOM element that was updated.</p>
+</div>
+<div class="paragraph">
+<div class="title">Custom initializers</div>
+<p>You can easily add a custom initializer function by adding it with <code>EntityModule.registerInitializer( callback )</code>.
+There is no need to manually execute your callback on document load, as that will happen automatically by the EntityModule.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Don&#8217;t execute your callback on document load and then add it to the initializers.
+Execution will happen automatically when calling <code>registerInitializer()</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Example registering a custom initializer that configures a sortable table to use AJAX loading</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">EntityModule.registerInitializer( function( node ) {
+    $( '[data-tbl-type="paged"]', node )
+        .on( "emSortableTable:prepareData", function( e, params ) {
+            console.log( "enhancing the data", params );
+            params['_partial'] = 'content';
+        } )
+        .on( "emSortableTable:loadData", function( e, params ) {
+            console.log( "performing ajax load" );
+            e.preventDefault();
+
+            $.get( '#', $.param( params, true ), function( data ) {
+                   $( '.pcs' ).replaceWith( data );
+                   // initialize the form elements in the element just updated
+                   EntityModule.initializeFormElements( $('.pcs') );
+               }
+            );
+        } )
+} );</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sortable_tables"><a class="anchor" href="#_sortable_tables"></a>4.2. Sortable tables</h4>
+<div class="paragraph">
+<p>The default list views support paging and sorting of the pages, where client-side code is used to trigger reloading of the page.</p>
+</div>
+<div class="paragraph">
+<p>Every table matching the selector <strong>[data-tbl-type="paged"]</strong> will be initialized for sorting and paging.
+A sortable table considers 3 default parameters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>page</em>: page number</p>
+</li>
+<li>
+<p><em>size</em>: number of results a single page should have</p>
+</li>
+<li>
+<p><em>sort</em>: array of sort strings: <em>field,direction</em> (eg. <em>name,ASC</em>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If a table is bound to a form (specified by the <em>data-tbl-form</em> attribute), paging or sorting will result in that form being submitted with the parameters being added as hidden form elements.
+If no form is bound, the current URL will be reloaded and the parameters added to the query string.</p>
+</div>
+<div class="paragraph">
+<div class="title">Customizing behaviour</div>
+<p>You can hook into the default behaviour by using the events a sortable table emits or listens to.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 44.4444%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Event</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Argument</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">emSortableTable:moveToPage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trigger this event if you want to reload the data for a specific page.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Page number.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">emSortableTable:sort</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trigger this event if you want to reload the data with different sorting.
+If the data is already sorted on the field specified, the sort order will be reversed.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the field to sort on.
+Usually value of the <em>data-tbl-field</em> attribute.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">emSortableTable:prepareData</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Called after determining page number, result size and fields to sort on.
+Subscribe to this event if you want to expand or modify the parameters that should be submitted.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameter map containing: <em>page</em>,<em>size</em> and <em>sort</em> keys.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">emSortableTable:loadData</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Called after the parameters for the data have been prepared.
+Subscribe to this event if you want to provide a custom method of fetching the data (eg AJAX based).
+Note that you have to prevent the default execution if you provide your own mechanism.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameters that should be used for fetching the data.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">Manually creating sortable tables</div>
+<p>If you want to manually initialize a sortable table you can directly call the JQuery plugin <strong>emSortableTable()</strong> on any element.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can easily create the valid structure for a sortable table using the <code>EntityViewElementBuilderHelper</code>.
+This allows you to create a <code>SortableTableBuilder</code> that builds a <code>ViewElement</code> that renders the right markup including all data attributes.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A valid sortable table requires several data attributes to be present on the DOM element:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unique id of the data table.
+ Also used on column headings and pager control elements to specify the table they belong to.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-form</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Optional) Name of the form that should be submitted when reloading the table data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-total-pages</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Total number of pages in the result set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-size</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Single page size.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-current-page</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current page number (0 based).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-sort</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Current sort value.
+This is a JSON object structure containing the actual sort fields and their order.
+Depending on the the presence of custom <code>Sort.Order.class</code> attributes on the <code>EntityPropertyDescriptor</code> these field names will be the same as the property names.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-field</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only used on heading cells that should be sortable.
+Specifies the field this column represents.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-sort-property</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only used on heading cells that should be sortable.
+Contains the actual property name that is being sorted on.
+Usually the same as the field name.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-page-selector</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used on a pager text field that contains the page number.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>data-tbl-page</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used on any element that should navigate to a page on a click event.
+Contains the value of the page that should be navigated to.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="entity-view-links"><a class="anchor" href="#entity-view-links"></a>5. Linking to entity views</h3>
+<div class="sect3">
+<h4 id="_default_views"><a class="anchor" href="#_default_views"></a>5.1. Default views</h4>
+<div class="paragraph">
+<p>If AdminWebModul is enabled and you have an auto-detected entity type (eg. from a Spring Data repository), the default views are usually enabled.
+Every view has a base URL path, see the chapter <a href="#default-views">default views</a> for more information on the view types.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Default view paths</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">View name</th>
+<th class="tableblock halign-left valign-top">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>listView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>view</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/create</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>updateView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/update</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleteView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/delete</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Not all paths work in all situations.
+The path structure is fixed, but it is only active if the corresponding view is also registered.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Association views</div>
+<p>The default view path for an association depends on the type of association.
+A <code>LINKED</code> association will use the same path as the target entity type, usually with the exception of the <code>listView</code>.
+An <code>EMBEDDED</code> association has a path structure nested below the source entity path.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Embedded association view paths</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 83.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">View name</th>
+<th class="tableblock halign-left valign-top">Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>listView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/associations/{associationName}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>view</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{associationId}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/create</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>updateView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/update</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>deleteView</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/delete</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">Custom view</div>
+<p>You can easily register a custom view for an entity type using an <code>EntityConfigurer</code>.
+Rendering that view can be done by calling the base entity type or association url, and specifying the <code>view</code> query string parameter.</p>
+</div>
+<div class="paragraph">
+<p>The path segments past the entity type root do not actually matter, you can use any of the default view paths as a base.
+The base type of view being rendered (eg. list view, form view) depends solely on how you defined the view itself.</p>
+</div>
+<div class="paragraph">
+<p>Suppose you created a custom update form view with name <code>myCustomView</code>.
+The following paths would render the exact same view:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@adminWeb:/entities/{entityName}/{id}?view=myCustomView</code></p>
+</li>
+<li>
+<p><code>@adminWeb:/entities/{entityName}/{id}/update?view=myCustomView</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_view_links"><a class="anchor" href="#_building_view_links"></a>5.2. Building view links</h4>
+<div class="paragraph">
+<p>An <code>EntityViewLinks</code> component is available to generate links to entity views from anywhere in your code.
+This component will inspect the <code>EntityRegistry</code> to find corresponding configurations and determine how links should be built.</p>
+</div>
+<div class="listingblock">
+<div class="title">Using EntityViewLinks central component</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Autowired
+EntityViewLinks links;
+
+// link to a list view
+links.linkTo( MyEntity.class ).toUriString();
+
+// Get the separate link builder
+EntityViewLinkBuilder linkBuilder = links.linkTo( MyEntity.class );</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apart from using the <code>EntityViewLinks</code> component globally to build links, the relevant <code>EntityViewLinkBuilder</code> for a particular entity type can often be accessed directly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is registered as an <code>EntityConfiguration</code> attribute of that entity type.
+You can retrieve it using <code>entityConfiguration.getAttribute( EntityViewLinkBuilder.class )</code>.</p>
+</li>
+<li>
+<p>When rendering an entity view, the builder is available as the <code>linkBuilder</code> property on the current <code>EntityViewContext</code>.</p>
+</li>
+<li>
+<p>The <code>EntityAdminMenuEvent</code> exposes the builder for the current entity type as a <code>linkBuilder</code> property, for direct access when building menus.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">EntityViewLinkBuilder examples</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String url;
+EntityViewContext entityViewContext;
+MyEntity entity;
+
+// -- Retrieving the link builder for the entity type
+EntityViewLinkBuilder linkBuilder = entityViewContext.getLinkBuilder();
+
+// -- Linking to the list view
+// url: /entities/myEntity
+url = linkBuilder.listView().toUriString();
+
+// -- Linking to the create view
+// url: /entities/myEntity/create
+url = linkBuilder.createView().toUriString();
+
+// -- Linking to the update view
+// url: /entities/myEntity/1/update
+url = linkBuilder.forInstance( entity ).updateView().toUriString();
+
+// -- Linking to a custom view
+// url: /entities/myEntity/1?view=customViewName
+url = linkBuilder.forInstance( entity )
+                 .withViewName( "customViewName" )
+                 .toUriString();
+
+// -- Linking to an association list view
+// url: /entities/myEntity/1/associations/associatedItems/
+url = linkBuilder.forInstance( entity )
+                 .association( AssociatedItem.class )
+                 .toUriString();
+
+// -- Linking to a single associated item update view
+// url: /entities/myEntity/1/associations/associatedItems/2/update
+url = linkBuilder.forInstance( entity )
+                 .association( associatedItem )
+                 .updateView()
+                 .toUriString();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>EntityViewLinkBuilder</code> has a fluent API that allows customizing the URL before converting it to a <code>String</code>.
+It also has some short-hand methods for commonly used entity view related parameters.
+Every method call results in a new instance being created, so you will not make inadvertent changes to an existing link builder.</p>
+</div>
+<div class="listingblock">
+<div class="title">Useful methods of EntityViewLinkBuilder</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">// append a custom path segment
+.slash( String path )
+// append query parameter
+.withQueryParam( String param, Object... values )
+// set a from URL ('from' query parameter)
+.withFromUrl( String url )
+// set a partial fragment ('_partial' query parameter)
+.withPartial( String fragment )
+// set a custom view name ('view' query parameter)
+.withViewName( String viewName )
+
+// return the unprocessed URI (eg. '@adminWeb:/entities/myEntity')
+.toString()
+// return the processed URI (eg. '/admin/entities/myEntity')
+.toUriString()
+// create a new UriComponentsBuilder with the current settings
+.toUriComponentsBuilder()
+// return as URI
+.toUri()
+// return as UriComponents
+.toUriComponents()
+
+// return the original EntityViewLinks
+.root()</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_common_url_parameters"><a class="anchor" href="#_common_url_parameters"></a>5.3. Common URL parameters</h4>
+<div class="paragraph">
+<p>The following is a list of query string parameters often used with entity views:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>from</code></dt>
+<dd>
+<p>Can hold a URL that should be used as a target when the new operation completes.
+Most often this is the target of the cancel link on a form view.
+See also <code>EntityViewLinkBuilder#withFromUrl(String)</code>.<br></p>
+<div class="paragraph">
+<p>When building association links, a default <code>from</code> value to navigate back to the original entity will usually be added.</p>
+</div>
+</dd>
+<dt class="hdlist1"><code>_partial</code></dt>
+<dd>
+<p>This can be the identifier of the only fragment of a page that should be rendered.
+Partial view rendering is part of the Across Web features.
+See also <code>EntityViewLinkBuilder#withPartial(String)</code>.</p>
+</dd>
+<dt class="hdlist1"><code>view</code></dt>
+<dd>
+<p>Name of the specific custom view that should be rendered.
+See also <code>EntityViewLinkBuilder#withViewName(String)</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>
